@@ -11,23 +11,33 @@ class Loading extends StatefulWidget {
 
 class _LoadingState extends State<Loading> {
 
-  void getData() async{
-    Response data = await get(Uri.parse('https://jsonplaceholder.typicode.com/todos/1'));
-    Map jsonDecodedData = jsonDecode(data.body);
+  void getTime() async{
+    // Make The API Request
+    Response response = await get(Uri.parse('http://worldtimeapi.org/api/timezone/Asia/Karachi'));
 
-    print(jsonDecodedData["title"]);
+    // Map The Data
+    Map data = jsonDecode(response.body);
+
+
+    // Get Properties From Data
+    String dateTime = data['datetime'];
+    
+    // Create A DateTime Object
+    DateTime time = DateTime.parse(dateTime);
+    print(time.timeZoneName);
   }
 
   @override
   void initState(){
     super.initState();
-    getData();
+    getTime();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Text('Loading Screen'),
+      body: SafeArea(
+        child: Text('')),
     );
   }
 }
