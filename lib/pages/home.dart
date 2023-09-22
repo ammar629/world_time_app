@@ -8,7 +8,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  Map<dynamic,dynamic> data ={};
+  Map<dynamic, dynamic> data = {};
 
   @override
   Widget build(BuildContext context) {
@@ -17,17 +17,33 @@ class _HomeState extends State<Home> {
     print(data);
     return Scaffold(
       body: SafeArea(
+          child: Padding(
+        padding: const EdgeInsets.fromLTRB(0.0, 120, 0, 0),
         child: Column(
           children: [
             TextButton.icon(
-              onPressed: ((){
+              onPressed: (() {
                 Navigator.pushNamed(context, '/location');
-              }), 
+              }),
               icon: Icon(Icons.edit_location),
-               label: Text('Edit Location'),
-               ),
+              label: Text('Edit Location'),
+            ),
+            const SizedBox(height: 20.0),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  data['location'],
+                  style: TextStyle(
+                    fontSize: 28.0,
+                    letterSpacing: 2.0,
+                  ),
+                ),
+              ],
+            )
           ],
-        )),
+        ),
+      )),
     );
   }
 }
