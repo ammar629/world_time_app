@@ -10,7 +10,7 @@ class Loading extends StatefulWidget {
 
 class _LoadingState extends State<Loading> {
   void setupWorldTime() async {
-    WorldTimeApi instance =  WorldTimeApi(location: 'Dhaka', flag: '.png', url: 'Asia/Dhaka');
+    WorldTimeApi instance =  WorldTimeApi(location: 'Karachi', flag: '.png', url: 'Asia/Karachi');
     await instance.getTime();
 
     // Redirect To Home Page
