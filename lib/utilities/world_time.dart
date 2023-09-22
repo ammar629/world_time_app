@@ -1,4 +1,5 @@
 import 'package:http/http.dart';
+import 'package:intl/intl.dart';
 import 'dart:convert';
 
 class WorldTimeApi {
@@ -31,8 +32,8 @@ class WorldTimeApi {
       // Create A DateTime Object
       DateTime timeData = DateTime.parse(dateTime);
 
-      // Set Time Property
-      time = timeData.toString();
+      // Format And Set Time Property
+      time = DateFormat.jm().format(timeData);
     } catch (e) {
       time = '[ERROR] Unable To Fetch Time Data';
     }
