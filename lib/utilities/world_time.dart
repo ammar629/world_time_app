@@ -14,23 +14,27 @@ class WorldTimeApi {
   // Location API Endpoint URL
   String url;
 
-  WorldTimeApi({required this.location,required this.flag,required this.url});
+  WorldTimeApi({required this.location, required this.flag, required this.url});
 
   Future<void> getTime() async {
-    // Make The API Request
-    Response response =
-        await get(Uri.parse('http://worldtimeapi.org/api/timezone/$url'));
+    try {
+      // Make The API Request
+      Response response =
+          await get(Uri.parse('http://worldtimeapi.org/api/timezone/$url'));
 
-    // Map The Data
-    Map data = jsonDecode(response.body);
+      // Map The Data
+      Map data = jsonDecode(response.body);
 
-    // Get Properties From Data
-    String dateTime = data['datetime'];
+      // Get Properties From Data
+      String dateTime = data['datetime'];
 
-    // Create A DateTime Object
-    DateTime timeData = DateTime.parse(dateTime);
+      // Create A DateTime Object
+      DateTime timeData = DateTime.parse(dateTime);
 
-    // Set Time Property
-    time = timeData.toString();
+      // Set Time Property
+      time = timeData.toString();
+    } catch (e) {
+      time = '[ERROR] Unable To Fetch Time Data';
+    }
   }
 }
