@@ -27,6 +27,18 @@ List<WorldTimeApi> locations = [
   void initState() {
     super.initState();
   }
+
+  void updateTime(int index) async{
+    WorldTimeApi locationInstance = locations[index];
+    await locationInstance.getTime();
+
+    Navigator.pop(context, {
+      'location': locationInstance.location,
+      'flag': locationInstance.flag,
+      'time': locationInstance.time,
+      'isDayTime' : locationInstance.isDayTime,
+    });
+  }
     
   @override
   Widget build(BuildContext context) {
@@ -46,7 +58,7 @@ List<WorldTimeApi> locations = [
             child: Card(
               child: ListTile(
                 onTap: ()=>{
-                  print(locations[index].location),
+                  updateTime(index),
                 },
                 title: Text(
                   locations[index].location
