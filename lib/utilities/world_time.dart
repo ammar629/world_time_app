@@ -15,6 +15,9 @@ class WorldTimeApi {
   // Location API Endpoint URL
   String url;
 
+  // To Indicate If To Display Sunny Or Dark Background Image
+  late bool isDayTime;
+
   WorldTimeApi({required this.location, required this.flag, required this.url});
 
   Future<void> getTime() async {
@@ -30,16 +33,27 @@ class WorldTimeApi {
 
       // Get Properties From Data
       String dateTime = data['datetime'];
-      time = await extractTime(dateTime);
 
+      String timeStorage = await extractTime(dateTime);
+
+      // Check For Day / Night
+      isDayTime = await checkForTime(timeStorage);
+
+      // Set Time
+      time = timeStorage;
     } catch (e, stackTrace) {
-      print('[ERROR] $e \nStackTrace: \n\n\n$stackTrace');
+      print('[ERROR] $e \nStackTrace: \n\n\n$stackTrace'); 
       time = '[ERROR] Unable To Fetch Time Data';
     }
   }
 
-  Future<String> extractTime(String timeData)async{
-    return timeData.substring(11,16);
+  Future<String> extractTime(String timeData) async {
+    return timeData.substring(11, 16);
   }
 
+  Future<bool> checkForTime(String timeStorage) async {
+    int timeNow = int.parse(timeStorage.substring(0, 2));
+    print(timeNow);
+    return (timeNow > 6 && timeNow < 20 ? true : false);
+  }
 }
