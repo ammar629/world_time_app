@@ -42,6 +42,7 @@ class _HomeState extends State<Home> {
                   Icons.edit_location,
                   color: Colors.grey[300],
                   ),
+                label: Text(
                   'Edit Location',
                   style: TextStyle(
                     color: Colors.grey[300],
