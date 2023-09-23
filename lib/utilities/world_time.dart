@@ -1,5 +1,5 @@
+// ignore_for_file: avoid_print
 import 'package:http/http.dart';
-import 'package:intl/intl.dart';
 import 'dart:convert';
 
 class WorldTimeApi {
@@ -26,16 +26,20 @@ class WorldTimeApi {
       // Map The Data
       Map data = jsonDecode(response.body);
 
+      print(data);
+
       // Get Properties From Data
       String dateTime = data['datetime'];
+      time = await extractTime(dateTime);
 
-      // Create A DateTime Object
-      DateTime timeData = DateTime.parse(dateTime);
-
-      // Format And Set Time Property
-      time = DateFormat.jm().format(timeData);
-    } catch (e) {
+    } catch (e, stackTrace) {
+      print('[ERROR] $e \nStackTrace: \n\n\n$stackTrace');
       time = '[ERROR] Unable To Fetch Time Data';
     }
   }
+
+  Future<String> extractTime(String timeData)async{
+    return timeData.substring(11,16);
+  }
+
 }
