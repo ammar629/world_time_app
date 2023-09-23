@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:world_time_app/utilities/world_time.dart';
 
 class ChooseLocation extends StatefulWidget {
   const ChooseLocation({super.key});
@@ -8,6 +9,24 @@ class ChooseLocation extends StatefulWidget {
 }
 
 class _ChooseLocationState extends State<ChooseLocation> {
+
+List<WorldTimeApi> locations = [
+  WorldTimeApi(url: 'Europe/London', location: 'London', flag: 'uk.png'),
+  WorldTimeApi(url: 'Europe/Athens', location: 'Athens', flag: 'greece.png'),
+  WorldTimeApi(url: 'Africa/Cairo', location: 'Cairo', flag: 'egypt.png'),
+  WorldTimeApi(url: 'Africa/Nairobi', location: 'Nairobi', flag: 'kenya.png'),
+  WorldTimeApi(url: 'America/Chicago', location: 'Chicago', flag: 'us.png'),
+  WorldTimeApi(url: 'America/New_York', location: 'New York', flag: 'us.png'),
+  WorldTimeApi(url: 'Asia/Seoul', location: 'Seoul', flag: 'sk.png'),
+  WorldTimeApi(url: 'Asia/Jakarta', location: 'Jakarta', flag: 'indonesia.png'),
+  WorldTimeApi(url: 'Asia/Karachi', location: 'Karachi', flag: 'pakistan.png'),
+  WorldTimeApi(url: 'Asia/Baghdad', location: 'Baghdad', flag: 'iraq.png'),
+];
+
+  @override
+  void initState() {
+    super.initState();
+  }
     
   @override
   Widget build(BuildContext context) {
@@ -19,12 +38,27 @@ class _ChooseLocationState extends State<ChooseLocation> {
         centerTitle: true,
         elevation: 0,
       ),
-      body: ElevatedButton(onPressed: ((){
-        setState(() {
-  
-        });
-      }), 
-       child: Text('Counter is')),
+      body: ListView.builder(
+        itemCount: locations.length,
+        itemBuilder: (context,index){
+          return Padding(
+            padding: const EdgeInsets.symmetric(vertical: 1.0,horizontal: 4.0),
+            child: Card(
+              child: ListTile(
+                onTap: ()=>{
+                  print(locations[index].location),
+                },
+                title: Text(
+                  locations[index].location
+                ),
+                leading: Image(
+                  image: AssetImage('assets/flags/${locations[index].flag}'),
+                ),
+              )
+            ),
+          );
+        },
+        ),
     );
   }
 }
