@@ -60,6 +60,8 @@ class _HomeState extends State<Home> {
                 ),
               ),
               const SizedBox(height: 20.0),
+              Image(image:AssetImage('assets/flags/${data['flag']}'),
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
