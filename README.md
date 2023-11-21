@@ -2,6 +2,7 @@
 
 * A portfolio application I designed to showcase my skills with flutter framework
 * This app is designed to show the time in any part of the world selected by the user
+* I also wrote an article about this on my blog [Codegitz](https://codegitz.com/creating-a-world-clock-app-in-flutter/)
 
 # Supported Mediums
 - Chrome Extension
