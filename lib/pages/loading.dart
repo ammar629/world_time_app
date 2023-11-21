@@ -13,6 +13,7 @@ class Loading extends StatefulWidget {
 
 class _LoadingState extends State<Loading> {
   void setupWorldTime() async {
+    // Create the WorldTimeApi instance
     WorldTimeApi instance =  WorldTimeApi(location: 'Karachi', flag: 'pakistan.png', url: 'Asia/Karachi');
     await instance.getTime();
 
@@ -31,9 +32,10 @@ class _LoadingState extends State<Loading> {
     setupWorldTime();
   }
 
+  // Loading Screen
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       backgroundColor: Color(0xFF000000),
       body: Center(
         child: SpinKitCubeGrid(color: Colors.white,

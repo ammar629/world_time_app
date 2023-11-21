@@ -8,19 +8,23 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  // Data property that will hold information sent by WorldTimeApi request
   Map<dynamic, dynamic> data = {};
 
   @override
   Widget build(BuildContext context) {
 
+    // If data is not empty use the data otherwise assign the value of passed arguments
     data = data.isNotEmpty ?  data : ModalRoute.of(context)!.settings.arguments as Map;
 
-    print(data);
+    //print(data);
 
     // Set Background
     String bgImage = data["isDayTime"] ? "day.png" : "night.png";
     Color bgColor = data["isDayTime"] ? Colors.blue : Colors.indigo[700]!;
 
+
+    // Build the UI
     return Scaffold(
       backgroundColor: bgColor,
       body: SafeArea(
@@ -67,7 +71,7 @@ class _HomeState extends State<Home> {
                 children: [
                   Text(
                     data['location'],
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: Colors.white,
                       fontSize: 28.0,
                       letterSpacing: 2.0,
@@ -75,12 +79,12 @@ class _HomeState extends State<Home> {
                   ),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20.0,
               ),
               Text(
                 data['time'],
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.white,
                   fontSize: 66.0,
                 ),

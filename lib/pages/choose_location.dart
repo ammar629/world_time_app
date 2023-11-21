@@ -9,7 +9,7 @@ class ChooseLocation extends StatefulWidget {
 }
 
 class _ChooseLocationState extends State<ChooseLocation> {
-
+// List of Locations
 List<WorldTimeApi> locations = [
   WorldTimeApi(url: 'Europe/London', location: 'London', flag: 'uk.png'),
   WorldTimeApi(url: 'Europe/Athens', location: 'Athens', flag: 'greece.png'),
@@ -29,9 +29,11 @@ List<WorldTimeApi> locations = [
   }
 
   void updateTime(int index) async{
+    // Create WorldTimeApi Instance
     WorldTimeApi locationInstance = locations[index];
     await locationInstance.getTime();
 
+    // Close this page and send data back to home page
     Navigator.pop(context, {
       'location': locationInstance.location,
       'flag': locationInstance.flag,
@@ -40,6 +42,8 @@ List<WorldTimeApi> locations = [
     });
   }
     
+
+    // Build UI
   @override
   Widget build(BuildContext context) {
     return Scaffold(
